@@ -56,4 +56,8 @@ def updateRoom(request, pk):
 
 # update a room
 def deleteRoom(request, pk):
-    print("Delete Room")
+    room = Room.objects.get(id=pk)
+    if request.method == "POST":
+        room.delete()
+        return redirect("home")
+    return render(request,'base/delete.html',{'obj':room})
