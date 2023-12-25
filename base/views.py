@@ -2,15 +2,17 @@ from django.shortcuts import render, redirect
 from .models import Room, Topic
 from .forms import RoomForm
 from django.db.models import Q
-
-# Create your views here.
-
-# rooms = [
-#     {'id':1,"name":"lets learn Python"},
-#     {'id':2,"name":"Design with me"},
-#     {'id':3,"name":"Frontend Developer"},
-# ]
-
+import logging
+logger = logging.getLogger(__name__)
+# Login Page
+def loginPage(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        logger.debug('This is a debug message')
+    context = {}
+    template = "base/login_register.html"
+    return render(request,template,context)
 
 # Load home page
 def home(request):
